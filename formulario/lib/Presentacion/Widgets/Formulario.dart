@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formulario/Presentacion/bloc/bloc.dart';
+import 'package:formulario/Presentacion/bloc/eventos.dart';
 
 class Formulario extends StatelessWidget {
   const Formulario({
@@ -52,7 +55,8 @@ class Formulario extends StatelessWidget {
                                         TextFormField(decoration: InputDecoration(filled: true, fillColor: Color.fromARGB(100, 0, 0, 0) ,label: Text('Edad', style: TextStyle(color: Colors.white)), helperText: 'Solo Numeros', helperStyle: TextStyle(color: Colors.white, backgroundColor: Color.fromARGB(100, 0, 0, 0)), hintText: 'Ingrese Su Edad', hintStyle: TextStyle(color: Colors.white), border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0))),style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)),
                                         SizedBox(height: 20.0,),
                                         ElevatedButton.icon(onPressed: (){
-                                            print("!Boton Presionado¡");
+                                            context.read<Logicaapp>().add(EnviarFormulario());
+
                                         },
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor: Color.fromARGB(100, 0, 0, 0),
