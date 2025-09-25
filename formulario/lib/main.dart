@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:formulario/Presentacion/Widgets/Initial.dart';
 import 'package:formulario/Presentacion/Widgets/formulario.dart';
+import 'package:formulario/Presentacion/Widgets/loading.dart';
 
 
 void main() => runApp(MyApp());
@@ -11,8 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Initial(),
+        home: Loading(),
     );
   }
 }
+
 
