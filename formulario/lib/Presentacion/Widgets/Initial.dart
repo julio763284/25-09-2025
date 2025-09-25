@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formulario/Presentacion/bloc/bloc.dart';
+import 'package:formulario/Presentacion/bloc/eventos.dart';
 
 
 class Initial extends StatelessWidget {
@@ -38,7 +41,7 @@ class Initial extends StatelessWidget {
                                 Text("Protege a tu pais y las personas que mas amas", style: TextStyle(fontSize: 25.0, color: Colors.white, fontStyle: FontStyle.italic),),
                                 SizedBox(height: 50.0,),
                                 ElevatedButton.icon(onPressed: (){
-                                    print("Boton Presionado");
+                                    context.read<Logicaapp>().add(Iniciarapp());
                                     },
                                     style: ElevatedButton.styleFrom(
                                             backgroundColor: Color.fromARGB(100, 0, 0, 0),

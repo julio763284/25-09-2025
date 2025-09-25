@@ -63,10 +63,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/FondoFormulario.jpg
     - assets/FondoFormularioRedimensionado.jpg
     - assets/FondoInicialredimensionado.jpg
-    - assets/FondoInicial01redimensionado.jpg
+    - assets/FondoHomepage02redi.jpg
+    - assets/Reservistaredimensionado.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
