@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(360.0), image: DecorationImage(image: AssetImage("Reservistaredimensionado.jpg"), fit: BoxFit.cover)),
                 ),
                 SizedBox(height: 20.0),
-                HomeviewLoading()
+                HomeviewSuccess()
                 ],
             ),
           )

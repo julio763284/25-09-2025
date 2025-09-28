@@ -29,8 +29,8 @@ class Loading extends StatelessWidget {
                 Text("Cargando...", style: TextStyle(fontSize: 40.0, color: Colors.white, fontStyle: FontStyle.italic),),
                 SizedBox(height: 50.0,),
                 Container(
-                  height: 90,
-                  width: 90,
+                  height: 70,
+                  width: 70,
                   child: CircularProgressIndicator(color: Colors.white,),
                 )
               ],

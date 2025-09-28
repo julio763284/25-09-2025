@@ -10,10 +10,8 @@ class Formulario extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  TextEditingController nombreController = TextEditingController();
-  TextEditingController paisController = TextEditingController();
-  TextEditingController lenguaController = TextEditingController();
-  TextEditingController edadController = TextEditingController();
+  TextEditingController correoController = TextEditingController();
+  TextEditingController contrasenaController = TextEditingController();
     return Scaffold(
         appBar: AppBar(leading: Icon(Icons.military_tech_outlined, color: Colors.white,),title: Text("Legion Internacional", style: TextStyle(fontSize: 35.0, color: Colors.white, fontStyle: FontStyle.italic),), backgroundColor: Color.fromARGB(200, 0, 0, 0), centerTitle: true,),
         body: Stack(
@@ -41,7 +39,7 @@ class Formulario extends StatelessWidget {
                             Container(
                                 padding: EdgeInsets.only(top: 15.0, left: 15.0, right: 15.0),
                                 width: 300.0,
-                                height: 400.0,
+                                height: 300.0,
                                 decoration: BoxDecoration(
                                     color: const Color.fromARGB(64, 0, 0, 0),
                                     borderRadius: BorderRadius.circular(30.0)
@@ -49,17 +47,13 @@ class Formulario extends StatelessWidget {
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
+                                        SizedBox(height: 50.0,),
+                                        TextFormField(controller: correoController,decoration: InputDecoration(filled: true, fillColor: Color.fromARGB(100, 0, 0, 0),label: Text("Correo Electronico", style: TextStyle(color: Colors.white),), border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0))), style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)),
                                         SizedBox(height: 20.0,),
-                                        TextFormField(controller: nombreController,decoration: InputDecoration(filled: true, fillColor: Color.fromARGB(100, 0, 0, 0),label: Text("Nombre y Apellidos", style: TextStyle(color: Colors.white),), border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0))), style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)),
-                                        SizedBox(height: 20.0,),
-                                        TextFormField(controller: paisController,decoration: InputDecoration(filled: true, fillColor: Color.fromARGB(100, 0, 0, 0),label: Text("Pais De Origen", style: TextStyle(color: Colors.white),), border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0))), style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)),
-                                        SizedBox(height: 20.0,),
-                                        TextFormField(controller: lenguaController,decoration: InputDecoration(filled: true, fillColor: Color.fromARGB(100, 0, 0, 0),label: Text("Lengua Materna", style: TextStyle(color: Colors.white)), hintText: 'Ej: Español' , hintStyle: TextStyle(color: Colors.white), border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0))), style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)),
-                                        SizedBox(height: 20.0,),
-                                        TextFormField(controller: edadController,decoration: InputDecoration(filled: true, fillColor: Color.fromARGB(100, 0, 0, 0) ,label: Text('Edad', style: TextStyle(color: Colors.white)), helperText: 'Solo Numeros', helperStyle: TextStyle(color: Colors.white, backgroundColor: Color.fromARGB(100, 0, 0, 0)), hintText: 'Ingrese Su Edad', hintStyle: TextStyle(color: Colors.white), border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0))),style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)),
-                                        SizedBox(height: 20.0,),
+                                        TextFormField(controller: contrasenaController,decoration: InputDecoration(filled: true, fillColor: Color.fromARGB(100, 0, 0, 0),label: Text("Contraseña", style: TextStyle(color: Colors.white),), border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0))), style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)),
+                                        SizedBox(height: 40.0,),
                                         ElevatedButton.icon(onPressed: (){
-                                            context.read<Logicaapp>().add(EnviarFormulario(nombrecompleto: nombreController.text, nacionalidad: paisController.text, lenguamaterna: lenguaController.text, edad: edadController.text));
+                                            context.read<Logicaapp>().add(EnviarFormulario(contrasena: correoController.text, correo: contrasenaController.text));
 
                                         },
                                         style: ElevatedButton.styleFrom(

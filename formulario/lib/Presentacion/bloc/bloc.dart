@@ -12,24 +12,31 @@ class Logicaapp extends Bloc<Eventosapp, Estadosapp> {
       emit(EstadoHomeFormularioapp());
     });
     on<EnviarFormulario>((event, emit) async {
-      emit(EstadoLoadingapp());
-      await Future.delayed(Duration(seconds: 2));
-      Dio dio = Dio();
-      dynamic url = 'https://mocki.io/v1/e1ab5863-9fd6-42e7-a61c-5e8bcea34f67';
-      Response response = await dio.post(
-        url,
-        data: {
-          "nombre": event.nombrecompleto,
-          "nacionalidad": event.nacionalidad,
-          "Lengua": event.lenguamaterna,
-          "Edad": event.edad,
-        },
-      );
-      if (response.statusCode == 201) {
-        emit(EstadoExitosoFormularioapp());
-      } else {
-        emit(EstadoHomeFormularioapp());
-      }
-    });
+  emit(EstadoLoadingapp());
+  await Future.delayed(Duration(seconds: 2));
+  
+  Dio dio = Dio();
+  String url = 'htthttps://datos2-0.free.beeceptor.com/';
+
+  try {
+    Response response = await dio.post(
+      url,
+      data: {
+        "correo": event.correo.trim(),
+        "contraseña": event.contrasena.trim(),
+      },
+    );
+     print('Status code: ${response.statusCode}');
+     print('Response data: ${response.data}');
+
+    if (response.statusCode == 201) {
+      emit(EstadoExitosoFormularioapp());
+    } else {
+      emit(EstadoHomeFormularioapp());
+    }
+  } catch (e) {
+    emit(EstadoHomeFormularioapp());
+  }
+});
   }
 }
