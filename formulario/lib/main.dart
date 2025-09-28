@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
               return Initial();
             } else if (state is EstadoLoadingapp) {
               return Loading();
-            } else if (state is EstadoFormularioapp){
+            } else if (state is EstadoHomeFormularioapp){
               return Formulario();
             } else {
               return Fallo();
