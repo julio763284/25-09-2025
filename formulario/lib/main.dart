@@ -9,6 +9,8 @@ import 'package:formulario/Presentacion/bloc/bloc.dart';
 import 'package:formulario/Presentacion/bloc/estados.dart';
 import 'package:formulario/Presentacion/Widgets/failure.dart';
 import 'package:formulario/Presentacion/bloc/eventos.dart';
+import 'package:formulario/Presentacion/bloc2/bloc2.dart';
+import 'package:formulario/Presentacion/bloc2/eventos2.dart';
 
 void main() {
   runApp(
@@ -30,7 +32,10 @@ class MyApp extends StatelessWidget {
           if (state is EstadoExitosoFormularioapp) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => BlocProvider(
+                create: (context) => LogicaHome()..add(EventosHomeIniciarPeticion()),
+                child: HomePage(),
+              )),
             );
           } 
         },
