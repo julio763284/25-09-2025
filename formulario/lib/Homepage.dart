@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                       } else if (state is EstadoHomeExitoso){
                         return HomeviewSuccess();
                       } else if (state is EstadoHomeFailure){
-                        return HomeviewSuccess();
+                        return HomeviewFailure();
                       } else{
                         return HomeviewFailure();
                       }
