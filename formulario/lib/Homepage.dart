@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 40.0),
-                Text("RESERVISTA # 100" , style: TextStyle(fontStyle: FontStyle.italic, fontSize: 35.0, color: Colors.white)),
+                Text("OFICIAL" , style: TextStyle(fontStyle: FontStyle.italic, fontSize: 35.0, color: Colors.white)),
                 SizedBox(height: 10.0),
                 Container(
                   width: 120,
@@ -83,16 +83,22 @@ class HomeviewSuccess extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 300.0,
-      height: 300.0,
+      height: 320.0,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0), color: Color.fromARGB(200, 0, 0, 0)),
       child: Column(
         children: [
-          SizedBox(height: 50.0,),
-          Text("Nombre Api" , style: TextStyle(color: Colors.white, fontSize: 20.0),),
-          SizedBox(height: 50.0,),
-          Text("Nacionalidad Api" , style: TextStyle(color: Colors.white, fontSize: 20.0),),
-          SizedBox(height: 50.0,),
-          Text("Edad Api" , style: TextStyle(color: Colors.white, fontSize: 20.0),)
+          SizedBox(height: 15.0,),
+          Text("Grado" , style: TextStyle(color: Colors.white, fontSize: 25.0),),
+          Text("Patrullero" , style: TextStyle(color: Colors.white, fontSize: 15.0),),
+          SizedBox(height: 15.0,),
+          Text("Nombre Oficial" , style: TextStyle(color: Colors.white, fontSize: 25.0),),
+          Text("Julio Andres Martinez Ramirez" , style: TextStyle(color: Colors.white, fontSize: 15.0),),
+          SizedBox(height: 15.0,),
+          Text("Placa" , style: TextStyle(color: Colors.white, fontSize: 25.0),),
+          Text("012345xj" , style: TextStyle(color: Colors.white, fontSize: 15.0),),
+          SizedBox(height: 15.0,),
+          Text("Tiempo de Servicio" , style: TextStyle(color: Colors.white, fontSize: 25.0),),
+          Text("12 Meses" , style: TextStyle(color: Colors.white, fontSize: 25.0),)
         ],
       ),
     );

@@ -16,7 +16,7 @@ class Logicaapp extends Bloc<Eventosapp, Estadosapp> {
   await Future.delayed(Duration(seconds: 2));
   
   Dio dio = Dio();
-  String url = 'htthttps://datos2-0.free.beeceptor.com/';
+  String url = 'https://datos2-0.free.beeceptor.com/';
 
   try {
     Response response = await dio.post(
