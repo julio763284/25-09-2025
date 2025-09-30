@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formulario/Presentacion/bloc2/bloc2.dart';
+import 'package:formulario/Presentacion/bloc2/estados2.dart';
+import 'package:formulario/Presentacion/bloc2/eventos2.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,9 +18,15 @@ class HomePage extends StatelessWidget {
             left: 0.0,
             right: 0.0,
             child: Container(
-            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("FondoHomepage02redi.jpg"), fit: BoxFit.cover, opacity: 0.8)),
-            )
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("FondoHomepage02redi.jpg"),
+                  fit: BoxFit.cover,
+                  opacity: 0.8,
+                ),
+              ),
             ),
+          ),
           Positioned(
             top: 20.0,
             bottom: 20.0,
@@ -26,23 +35,55 @@ class HomePage extends StatelessWidget {
             child: Container(
               height: 100.0,
               width: 100.0,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0), color: Color.fromARGB(100, 0, 0, 0)),
-            child: Column(
-              children: [
-                SizedBox(height: 40.0),
-                Text("RESERVISTA # 100" , style: TextStyle(fontStyle: FontStyle.italic, fontSize: 35.0, color: Colors.white)),
-                SizedBox(height: 10.0),
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(360.0), image: DecorationImage(image: AssetImage("Reservistaredimensionado.jpg"), fit: BoxFit.cover)),
-                ),
-                SizedBox(height: 20.0),
-                HomeviewLoading()
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.0),
+                color: Color.fromARGB(100, 0, 0, 0),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: 40.0),
+                  Text(
+                    "OFICIAL",
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 35.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(360.0),
+                      image: DecorationImage(
+                        image: AssetImage("Reservistaredimensionado.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.0),
+                  BlocBuilder<LogicaHome, EstadosHome>(
+                    builder: (context, state) {
+                      if (state is EstadoHomeLoading) {
+                        return HomeviewLoading();
+                      } else if (state is EstadoHomeExitoso){
+                        print(state.grado);
+                        print(state.nombre);
+                        print(state.placa);
+                        print(state.servicio);
+                        return HomeviewSuccess(grado: state.grado, nombre: state.nombre, placa: state.placa, servicio : state.servicio);
+                      } else if (state is EstadoHomeFailure){
+                        return HomeviewFailure();
+                      } else{
+                        return HomeviewFailure();
+                      }
+                    },
+                  ),
                 ],
+              ),
             ),
-          )
-          )
+          ),
         ],
       ),
     );
@@ -50,24 +91,25 @@ class HomePage extends StatelessWidget {
 }
 
 class HomeviewInitial extends StatelessWidget {
-  const HomeviewInitial({
-    super.key,
-  });
+  const HomeviewInitial({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 300.0,
       height: 300.0,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0), color: Color.fromARGB(200, 0, 0, 0)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        color: Color.fromARGB(200, 0, 0, 0),
+      ),
       child: Column(
         children: [
-          SizedBox(height: 50.0,),
-          Text("-----" , style: TextStyle(color: Colors.white, fontSize: 20.0),),
-          SizedBox(height: 50.0,),
-          Text("-----" , style: TextStyle(color: Colors.white, fontSize: 20.0),),
-          SizedBox(height: 50.0,),
-          Text("-----" , style: TextStyle(color: Colors.white, fontSize: 20.0),)
+          SizedBox(height: 50.0),
+          Text("-----", style: TextStyle(color: Colors.white, fontSize: 20.0)),
+          SizedBox(height: 50.0),
+          Text("-----", style: TextStyle(color: Colors.white, fontSize: 20.0)),
+          SizedBox(height: 50.0),
+          Text("-----", style: TextStyle(color: Colors.white, fontSize: 20.0)),
         ],
       ),
     );
@@ -75,24 +117,53 @@ class HomeviewInitial extends StatelessWidget {
 }
 
 class HomeviewSuccess extends StatelessWidget {
-  const HomeviewSuccess({
-    super.key,
-  });
+  final String? grado;
+  final String? nombre;
+  final String? placa;
+  final String? servicio;
+  const HomeviewSuccess({super.key, this.grado, this.nombre, this.placa, this.servicio});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 300.0,
-      height: 300.0,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0), color: Color.fromARGB(200, 0, 0, 0)),
+      height: 320.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        color: Color.fromARGB(200, 0, 0, 0),
+      ),
       child: Column(
         children: [
-          SizedBox(height: 50.0,),
-          Text("Nombre Api" , style: TextStyle(color: Colors.white, fontSize: 20.0),),
-          SizedBox(height: 50.0,),
-          Text("Nacionalidad Api" , style: TextStyle(color: Colors.white, fontSize: 20.0),),
-          SizedBox(height: 50.0,),
-          Text("Edad Api" , style: TextStyle(color: Colors.white, fontSize: 20.0),)
+          SizedBox(height: 15.0),
+          Text("Grado", style: TextStyle(color: Colors.white, fontSize: 25.0)),
+          Text(
+            grado ?? "No disponible",
+            style: TextStyle(color: Colors.white, fontSize: 15.0),
+          ),
+          SizedBox(height: 15.0),
+          Text(
+            "Nombre Oficial",
+            style: TextStyle(color: Colors.white, fontSize: 25.0),
+          ),
+          Text(
+            nombre ?? "No disponible",
+            style: TextStyle(color: Colors.white, fontSize: 15.0),
+          ),
+          SizedBox(height: 15.0),
+          Text("Placa", style: TextStyle(color: Colors.white, fontSize: 25.0)),
+          Text(
+            placa ?? "No disponible",
+            style: TextStyle(color: Colors.white, fontSize: 15.0),
+          ),
+          SizedBox(height: 15.0),
+          Text(
+            "Tiempo de Servicio",
+            style: TextStyle(color: Colors.white, fontSize: 25.0),
+          ),
+          Text(
+            servicio ?? "No disponible",
+            style: TextStyle(color: Colors.white, fontSize: 15.0),
+          ),
         ],
       ),
     );
@@ -100,26 +171,57 @@ class HomeviewSuccess extends StatelessWidget {
 }
 
 class HomeviewLoading extends StatelessWidget {
-  const HomeviewLoading({
-    super.key,
-  });
+  const HomeviewLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 300.0,
       height: 300.0,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0), color: Color.fromARGB(200, 0, 0, 0)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        color: Color.fromARGB(200, 0, 0, 0),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Cargando..." , style: TextStyle(color: Colors.white, fontSize: 30.0)),
-          SizedBox(height: 50.0,),
+          Text(
+            "Cargando...",
+            style: TextStyle(color: Colors.white, fontSize: 30.0),
+          ),
+          SizedBox(height: 50.0),
           Container(
-              height: 80,
-              width: 80,
-              child: CircularProgressIndicator(color: Colors.white,),
-          )
+            height: 80,
+            width: 80,
+            child: CircularProgressIndicator(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeviewFailure extends StatelessWidget {
+  const HomeviewFailure({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300.0,
+      height: 300.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        color: Color.fromARGB(200, 0, 0, 0),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "R%R%R% ERROR R%R%R%",
+            style: TextStyle(color: Colors.white, fontSize: 30.0),
+          ),
+          SizedBox(height: 50.0),
+          ElevatedButton.icon(onPressed: (){}, label: Text("ERROR"))
         ],
       ),
     );
