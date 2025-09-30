@@ -68,7 +68,11 @@ class HomePage extends StatelessWidget {
                       if (state is EstadoHomeLoading) {
                         return HomeviewLoading();
                       } else if (state is EstadoHomeExitoso){
-                        return HomeviewSuccess();
+                        print(state.grado);
+                        print(state.nombre);
+                        print(state.placa);
+                        print(state.servicio);
+                        return HomeviewSuccess(grado: state.grado, nombre: state.nombre, placa: state.placa, servicio : state.servicio);
                       } else if (state is EstadoHomeFailure){
                         return HomeviewFailure();
                       } else{
@@ -113,7 +117,11 @@ class HomeviewInitial extends StatelessWidget {
 }
 
 class HomeviewSuccess extends StatelessWidget {
-  const HomeviewSuccess({super.key});
+  final String? grado;
+  final String? nombre;
+  final String? placa;
+  final String? servicio;
+  const HomeviewSuccess({super.key, this.grado, this.nombre, this.placa, this.servicio});
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +137,7 @@ class HomeviewSuccess extends StatelessWidget {
           SizedBox(height: 15.0),
           Text("Grado", style: TextStyle(color: Colors.white, fontSize: 25.0)),
           Text(
-            "Patrullero",
+            grado ?? "No disponible",
             style: TextStyle(color: Colors.white, fontSize: 15.0),
           ),
           SizedBox(height: 15.0),
@@ -138,13 +146,13 @@ class HomeviewSuccess extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontSize: 25.0),
           ),
           Text(
-            "Julio Andres Martinez Ramirez",
+            nombre ?? "No disponible",
             style: TextStyle(color: Colors.white, fontSize: 15.0),
           ),
           SizedBox(height: 15.0),
           Text("Placa", style: TextStyle(color: Colors.white, fontSize: 25.0)),
           Text(
-            "012345xj",
+            placa ?? "No disponible",
             style: TextStyle(color: Colors.white, fontSize: 15.0),
           ),
           SizedBox(height: 15.0),
@@ -153,7 +161,7 @@ class HomeviewSuccess extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontSize: 25.0),
           ),
           Text(
-            "12 Meses",
+            servicio ?? "No disponible",
             style: TextStyle(color: Colors.white, fontSize: 15.0),
           ),
         ],

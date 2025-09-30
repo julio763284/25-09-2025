@@ -5,9 +5,9 @@ class DatosUser {
   String? tiempoServicio;
 
   DatosUser(Map json){
-  grado = json["patrullero"];
-  nombre = json["Julio Andres Martinez Ramirez"];
-  placa = json["012345xj"];
-  tiempoServicio = json["1 año"];
+  grado = json["grado"];
+  nombre = json["nombre"];
+  placa = json["placa"];
+  tiempoServicio = json["añosdeservicio"];
   }
 }

@@ -14,9 +14,15 @@ class LogicaHome extends Bloc<EventosHome, EstadosHome> {
       try {
         String url = "https://gist.githubusercontent.com/julio763284/6ed121035f47c4cef86435635171e811/raw/27a46b60d119c68bfd8d0bc388b782a82c74168d/gistfile1.txt";
         Response response = await dio2.get(url);
+        print(response.data);
         if (response.statusCode == 200) {
           dynamic informacion = jsonDecode(response.data);
+          print(informacion);
           DatosUser data = DatosUser(informacion);
+          print(data.grado);
+          print(data.nombre);
+          print(data.placa);
+          print(data.tiempoServicio);
           emit(EstadoHomeExitoso(data.grado,data.nombre,data.placa,data.tiempoServicio));
         } else {
           emit(EstadoHomeFailure());
