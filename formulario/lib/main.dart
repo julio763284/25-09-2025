@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<Logicaapp, Estadosapp>(
           builder: (context, state) {
             if (state is EstadoInicialapp) {
-              return Fallo();
+              return Initial();
             } else if (state is EstadoLoadingapp) {
               return Loading();
             } else if (state is EstadoHomeFormularioapp){
